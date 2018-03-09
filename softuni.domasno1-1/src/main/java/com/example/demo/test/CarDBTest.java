@@ -34,24 +34,17 @@ public class CarDBTest {
 				
 				long id=10;
 				Car temp = session.get(Car.class, id);//working
-				System.out.println("Cars: "+temp.getMake());
-				System.out.println();
+				System.out.println("\nPRICE: "+temp.calculatePrice());				
+				System.out.println("\nCars: "+temp.toString());	
+				System.out.println("\nCars Parts: "+temp.getPartPrice());	
 				Customer temp2 = session.get(Customer.class, id);//working
-				System.out.println();
 				System.out.println("Customers: "+temp2.getName());
-				System.out.println();
 				Sale temp3 = session.get(Sale.class, id);//working
-				System.out.println();
-				System.out.println("Sales: "+temp3.getDiscount());
-				System.out.println();
+				System.out.println("Sales: "+temp3.toString());
 				Part temp4 = session.get(Part.class, id);// WORKING
-				System.out.println();
-				System.out.println("Parts: "+temp4.getName());
-				System.out.println();
+				System.out.println("Parts: "+temp4.toString());
 				Supplier temp5 = session.get(Supplier.class, id);//working
-				System.out.println();
-				System.out.println("Suppliers: "+temp5.getName());
-//				System.out.println();				
+				System.out.println("Suppliers: "+temp5.toString());			
 				System.out.println(temp.getParts());
 
 				//commit the transaction

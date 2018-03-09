@@ -3,6 +3,8 @@ package com.example.demo.entity;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -106,7 +108,7 @@ public class Car {
 			parts.add(s);
 	}
 	
-	public double calculatePrice(List<Part>parts) {
+	public double calculatePrice() {
 		double price=0.0;
 				if(parts==null) {
 					return price;
@@ -118,7 +120,13 @@ public class Car {
 				}
 				return price;
 		}
-	
+	public List<Double> getPartPrice(){
+		List<Double>carParts=new ArrayList<>();
+		carParts=parts.stream()
+				.map(a->a.getPrice())
+				.collect(Collectors.toList());
+		return carParts;
+	}
 	@Override
 	public String toString() {
 		return "Cars [make=" + make + ", model=" + model + ", travelledDistance=" + travelledDistance + "]";
