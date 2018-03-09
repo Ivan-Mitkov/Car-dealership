@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,11 +13,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="parts")
-public class Parts {
+public class Part {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
@@ -28,7 +30,7 @@ public class Parts {
 	@Column(name="price")
 	private double price; 
 	
-	@Column(name="price")
+	@Column(name="quantity")
 	private int quantity;
 	
 	@ManyToMany(fetch=FetchType.LAZY,
@@ -39,20 +41,24 @@ public class Parts {
 		CascadeType.REFRESH})
 	@JoinTable(
 			name="parts_cars",
-			joinColumns=@JoinColumn(name="car_id"),
-			inverseJoinColumns=@JoinColumn(name="part_id")
+			joinColumns=@JoinColumn(name="part_id"),
+			inverseJoinColumns=@JoinColumn(name="car_id")
 			)
-	private List<Cars>cars;
+	private List<Car>cars;
 	
-	private Suppliers suppliers;
+	@OneToOne(cascade= 
+		{CascadeType.DETACH,
+		CascadeType.MERGE,
+		CascadeType.PERSIST,
+		CascadeType.REFRESH})
+	@JoinColumn(name="supplier_id")
+	private Supplier supplier;
 	
-	
-
-	public Parts() {
+	public Part() {
 		
 	}
 
-	public Parts(String name, double price, int quantity) {
+	public Part(String name, double price, int quantity) {
 		this.name = name;
 		this.price = price;
 		this.quantity = quantity;
@@ -89,11 +95,32 @@ public class Parts {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	public List<Car> getCars() {
+		return cars;
+	}
 
+	public void setCars(List<Car> cars) {
+		this.cars = cars;
+	}
+
+	public Supplier getSupplier() {
+		return supplier;
+	}
+
+	public void setSupplier(Supplier suppliers) {
+		this.supplier = suppliers;
+	}
+	//add method for adding cars
+		public void addCar(Car s) {
+				if(cars==null) {
+					cars= new ArrayList<Car>();
+				}
+				cars.add(s);
+		}
 	@Override
 	public String toString() {
 		return "Parts [name=" + name + ", price=" + price + ", quantity=" + quantity + ", cars=" + cars + ", suppliers="
-				+ suppliers + "]";
+				+ supplier + "]";
 	}
 	
 	

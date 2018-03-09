@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="suppliers")
-public class Suppliers {
+public class Supplier {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
@@ -18,16 +18,16 @@ public class Suppliers {
 	@Column(name="name")
 	private String name;
 	
-	@Column(name="is_imported")
-	private int isImported;
+	@Column(name="is_importer")
+	private boolean isImporter;
 
-	public Suppliers() {
+	public Supplier() {
 		
 	}
 
-	public Suppliers(String name, int isImported) {
+	public Supplier(String name, boolean isImported) {
 		this.name = name;
-		this.isImported = isImported;
+		this.isImporter = isImported;
 	}
 
 	public long getId() {
@@ -46,12 +46,17 @@ public class Suppliers {
 		this.name = name;
 	}
 
-	public int isImported() {
-		return isImported;
+	public boolean isImporter() {
+		return isImporter;
 	}
 
-	public void setImported(int isImported) {
-		this.isImported = isImported;
+	public void setImported(boolean isImporter) {
+		this.isImporter = isImporter;
+	}
+
+	@Override
+	public String toString() {
+		return "Supplier [id=" + id + ", name=" + name + ", isImporter=" + isImporter + "]";
 	}
 	
 }

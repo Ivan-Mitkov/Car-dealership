@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="customers")
-public class Customers {
+public class Customer {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
@@ -26,11 +26,11 @@ public class Customers {
 	@Column(name="is_young_driver")
 	private boolean isYoungDriver;
 
-	public Customers() {
+	public Customer() {
 		
 	}
 
-	public Customers(String name, LocalDateTime birthDate, boolean isYoungDriver) {
+	public Customer(String name, LocalDateTime birthDate, boolean isYoungDriver) {
 		this.name = name;
 		this.birthDate = birthDate;
 		this.isYoungDriver = isYoungDriver;

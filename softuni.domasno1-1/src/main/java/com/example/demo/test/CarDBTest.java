@@ -6,11 +6,11 @@ import org.hibernate.cfg.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.demo.entity.Cars;
-import com.example.demo.entity.Customers;
-import com.example.demo.entity.Parts;
-import com.example.demo.entity.Sales;
-import com.example.demo.entity.Suppliers;
+import com.example.demo.entity.Car;
+import com.example.demo.entity.Customer;
+import com.example.demo.entity.Part;
+import com.example.demo.entity.Sale;
+import com.example.demo.entity.Supplier;
 
 
 public class CarDBTest {
@@ -18,11 +18,11 @@ public class CarDBTest {
 	// create session factory
 			SessionFactory factory= new Configuration()
 					.configure()
-//					.addAnnotatedClass(Cars.class)
-					.addAnnotatedClass(Customers.class)
-//					.addAnnotatedClass(Sales.class)
-//					.addAnnotatedClass(Parts.class)
-					.addAnnotatedClass(Suppliers.class)
+					.addAnnotatedClass(Car.class)
+					.addAnnotatedClass(Customer.class)
+					.addAnnotatedClass(Sale.class)
+					.addAnnotatedClass(Part.class)
+					.addAnnotatedClass(Supplier.class)
 					.buildSessionFactory();
 			//create session
 	       
@@ -31,20 +31,28 @@ public class CarDBTest {
 			 
 				//start a transaction
 				session.beginTransaction();
-				//get student
+				
 				long id=10;
-//				Cars temp = session.get(Cars.class, id);
-//				System.out.println("Cars: "+temp.getMake());
-				Customers temp2 = session.get(Customers.class, id);
-				System.out.println("Customers: "+temp2.getName());//working
-//				Sales temp3 = session.get(Sales.class, id);
-//				System.out.println("Sales: "+temp3.getCarId());
-//				Parts temp4 = session.get(Parts.class, id);
-//				System.out.println("Parts: "+temp4.getName());
-				Suppliers temp5 = session.get(Suppliers.class, id);
+				Car temp = session.get(Car.class, id);//working
+				System.out.println("Cars: "+temp.getMake());
+				System.out.println();
+				Customer temp2 = session.get(Customer.class, id);//working
+				System.out.println();
+				System.out.println("Customers: "+temp2.getName());
+				System.out.println();
+				Sale temp3 = session.get(Sale.class, id);//working
+				System.out.println();
+				System.out.println("Sales: "+temp3.getDiscount());
+				System.out.println();
+				Part temp4 = session.get(Part.class, id);// WORKING
+				System.out.println();
+				System.out.println("Parts: "+temp4.getName());
+				System.out.println();
+				Supplier temp5 = session.get(Supplier.class, id);//working
+				System.out.println();
 				System.out.println("Suppliers: "+temp5.getName());
-//				
-//				System.out.println(temp.getParts());
+//				System.out.println();				
+				System.out.println(temp.getParts());
 
 				//commit the transaction
 				session.getTransaction().commit();

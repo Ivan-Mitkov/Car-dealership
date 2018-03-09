@@ -18,7 +18,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="cars")
-public class Cars {
+public class Car {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -42,25 +42,21 @@ public class Cars {
 		CascadeType.REFRESH})
 	@JoinTable(
 			name="parts_cars",
-			joinColumns=@JoinColumn(name="part_id"),
-			inverseJoinColumns=@JoinColumn(name="car_id")
+			joinColumns=@JoinColumn(name="car_id"),
+			inverseJoinColumns=@JoinColumn(name="part_id")
 			)
-	private List<Parts>parts;
+	private List<Part>parts;
 
-	public List<Parts> getParts() {
+	public List<Part> getParts() {
 		return parts;
 	}
 
-	public Cars() {
+	public Car() {
 		
 	}
 
-	@Override
-	public String toString() {
-		return "Cars [make=" + make + ", model=" + model + ", travelledDistance=" + travelledDistance + "]";
-	}
-
-	public Cars(String make, String model, long travelledDistance) {
+	
+	public Car(String make, String model, long travelledDistance) {
 		this.make = make;
 		this.model = model;
 		this.travelledDistance = travelledDistance;
@@ -98,19 +94,19 @@ public class Cars {
 		this.travelledDistance = travelledDistance;
 	}
 	
-	public void setParts(List<Parts> parts) {
+	public void setParts(List<Part> parts) {
 		this.parts = parts;
 	}
 
 	//add method for adding parts
-	public void addCourse(Parts s) {
+	public void addPart(Part s) {
 			if(parts==null) {
-				parts= new ArrayList<Parts>();
+				parts= new ArrayList<Part>();
 			}
 			parts.add(s);
 	}
 	
-	public double calculatePrice(List<Parts>parts) {
+	public double calculatePrice(List<Part>parts) {
 		double price=0.0;
 				if(parts==null) {
 					return price;
@@ -123,5 +119,9 @@ public class Cars {
 				return price;
 		}
 	
-	
+	@Override
+	public String toString() {
+		return "Cars [make=" + make + ", model=" + model + ", travelledDistance=" + travelledDistance + "]";
+	}
+
 }
