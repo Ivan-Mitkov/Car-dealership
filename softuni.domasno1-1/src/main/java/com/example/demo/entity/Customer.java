@@ -60,12 +60,20 @@ public class Customer {
 		this.birthDate = birthDate;
 	}
 
-	public boolean isYoungDriver() {
+	
+
+	public boolean getIsYoungDriver() {
 		return isYoungDriver;
 	}
 
 	public void setYoungDriver(boolean isYoungDriver) {
 		this.isYoungDriver = isYoungDriver;
+	}
+
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", name=" + name + ", birthDate=" + birthDate + ", isYoungDriver=" + isYoungDriver
+				+ "]";
 	}
 	
 	
