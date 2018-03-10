@@ -1,11 +1,8 @@
-package com.example.demo.test;
+package com.example.demo.testDB;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.example.demo.entity.Car;
 import com.example.demo.entity.Customer;
 import com.example.demo.entity.Part;
