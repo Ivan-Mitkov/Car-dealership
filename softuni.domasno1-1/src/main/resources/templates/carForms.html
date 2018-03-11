@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cars</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Manufacturers:</h1>
+    <form action="@{/showCars}" method="post">
+	 	<select type="text" th:field="*{type}">
+	 	
+		  <option th:each="type : ${allTypes}" 
+		          th:value="${type}" 
+		          th:text="${type}">Wireframe</option>
+		</select>
+		<p><input type="submit" value="Submit" />
+	</form>
+</body>
+</html>

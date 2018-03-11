@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Make</title>
+
+</head>
+<body>
+			<table >
+					<tr>
+						<th>Make</th>
+						<th>Model</th>
+						<th>Travelled distance</th>						
+					</tr>
+    
+				    <tr th:each="car : ${carsByMake}">
+				    
+				    	<td th:text="${car.make}"></td>   
+				    	<td th:text="${car.model}"></td>   
+				    	<td th:text="${car.travelledDistance}"></td>   	
+				    </tr>
+				
+    	</table>
+	 		
+		 
+</body>
+</html>
