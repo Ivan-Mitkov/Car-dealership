@@ -33,7 +33,7 @@ public class Part {
 	@Column(name="quantity")
 	private int quantity;
 	
-	@ManyToMany(fetch=FetchType.LAZY,
+	@ManyToMany(fetch=FetchType.EAGER,
 			cascade= 
 		{CascadeType.DETACH,
 		CascadeType.MERGE,

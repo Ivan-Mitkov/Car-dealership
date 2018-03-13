@@ -34,7 +34,7 @@ public class Car {
 	@Column(name="travelled_distance")
 	private long travelledDistance;
 	
-	@ManyToMany(fetch=FetchType.LAZY,
+	@ManyToMany(fetch=FetchType.EAGER,
 			cascade= 
 		{CascadeType.DETACH,
 		CascadeType.MERGE,
