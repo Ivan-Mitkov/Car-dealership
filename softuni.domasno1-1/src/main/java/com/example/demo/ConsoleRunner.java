@@ -46,27 +46,27 @@ public class ConsoleRunner implements CommandLineRunner {
 //		print(cars);
 //		List<String>makers=carService.getCarMakers();
 //		print(makers);
-		long id=10L;
-		Map<Car, List<Part>> parts=new HashMap<>();
-		try {
-			Car car = carService.carById(id);
-			System.out.println(car);
-		}
-		catch(Exception e) {
-			System.out.println("Car null");
-			e.printStackTrace();
-		}
-		
-		try {
-			parts=carService.getCarWithThereParts(id);
-			printMap(parts);
-		}
-		catch(Exception e) {
-			System.out.println("Parts null");
-			e.printStackTrace();
-			
-		}
-		
+//		long id=10L;
+//		Map<Car, List<Part>> parts=new HashMap<>();
+//		try {
+//			Car car = carService.carById(id);
+//			System.out.println(car);
+//		}
+//		catch(Exception e) {
+//			System.out.println("Car null");
+//			e.printStackTrace();
+//		}
+//		
+//		try {
+//			parts=carService.getCarWithThereParts(id);
+//			printMap(parts);
+//		}
+//		catch(Exception e) {
+//			System.out.println("Parts null");
+//			e.printStackTrace();
+//			
+//		}
+//		
 		
 	}
 	private<K,V> void printMap(Map<K, V> map) {

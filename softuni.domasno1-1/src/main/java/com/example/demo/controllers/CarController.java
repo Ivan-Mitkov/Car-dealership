@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,17 +31,23 @@ public class CarController {
 			@Autowired
 			CarsService service;
 			
-//NOT MAPPED TO THE FORMS
-			@PostMapping("/showCars")
-			public String listCarsByMake( @RequestParam("type")String type, Model model) {
-				
-				String make2=type;
-				List<Car> tempCar=service.getCarsByMake(make2);
+			public CarController(CarsService service) {
+				this.service = service;
+			}
+			//NOT MAPPED TO THE FORMS
+			@PostMapping("/showCarTest")
+			public String listCarsByMake(@Valid @ModelAttribute("car") Car car,
+					 BindingResult result,
+					 Model model) {
+				if (result.hasErrors()) {
+			        return "error";
+			    }
+				String type2=car.getMake();
 			
-				//add customers to spring MVC model
-				model.addAttribute("carsByMake",tempCar);
+				//add car to spring MVC model
+				model.addAttribute("car",type2);
 				
-				return "makelist";
+				return "makelistTest";
 			}
 			@GetMapping("/carForms")
 			public String showCarForm(@ModelAttribute("type")String type,
@@ -51,6 +58,11 @@ public class CarController {
 				
 				return "carForms";
 			}
-			
+			@GetMapping("/carFormTest")
+			public String showCarFormTest(Model model) {
+				
+				model.addAttribute("car",new Car());				
+				return "carFormTest";
+			}
 	
 }

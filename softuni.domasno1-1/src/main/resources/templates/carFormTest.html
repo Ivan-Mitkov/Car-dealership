@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cars</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Manufacturers:</h1>
+    <form th:action="@{showCarTest}" th:object="${car}"  th:method="post">
+	 
+	  
+	    <input th:type="text" th:field="*{make}" />
+	    <input type="submit" value="Submit" />
+	  
+	</form>
+			
+	
+</body>
+</html>
