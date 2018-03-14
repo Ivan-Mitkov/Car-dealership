@@ -5,11 +5,11 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<h1>Manufacturers:</h1>
-    <form th:action="@{showCar}" th:object="${car}"  th:method="post">
+	<h1>Input the id:</h1>
+    <form th:action="@{partOfCar}" th:object="${car}"  th:method="post">
 	 
 	  
-	    <input th:type="text" th:field="*{make}" />
+	    <input th:type="text" th:field="*{id}" />
 	    <input type="submit" value="Submit" />
 	  
 	</form>

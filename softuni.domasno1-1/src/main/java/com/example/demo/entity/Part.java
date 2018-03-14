@@ -119,8 +119,7 @@ public class Part {
 		}
 	@Override
 	public String toString() {
-		return "Parts [name=" + name + ", price=" + price + ", quantity=" + quantity + ", cars=" + cars + ", suppliers="
-				+ supplier + "]";
+		return "Parts [name=" + name + ", price=" + price +"]";
 	}
 	
 	

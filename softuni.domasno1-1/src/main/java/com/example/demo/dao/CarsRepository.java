@@ -21,10 +21,17 @@ import com.example.demo.entity.Part;
 public interface CarsRepository extends JpaRepository<Car, Long> {
 		
 	List<Car> findByMakeOrderByModel(String make);
-	@Query(value="select p " +
+//	@Query(value="select p " +
+//		    "from Part p " +
+//		    "inner join p.cars c " +
+//		    "where c.id = :id ")
+//	 List<Part> findByIdIn(@Param(value = "id")long id);
+	
+	@Query(value="select distinct p " +
 		    "from Part p " +
 		    "inner join p.cars c " +
 		    "where c.id = :id ")
 	 List<Part> findByIdIn(@Param(value = "id")long id);
+	
 	
 }

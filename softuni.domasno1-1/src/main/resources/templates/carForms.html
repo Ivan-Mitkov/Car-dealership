@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+<!-- NOT WORKING
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Cars</title>
@@ -6,14 +7,15 @@
 </head>
 <body>
 	<h1>Manufacturers:</h1>
-    <form action="@{/showCars}" method="post">
-	 	<select type="text" th:field="${type}">
+    <form action="@{/showCars}"  method="post">
+	 	<select  th:field="*{allTypes}">
 	 	
-		  <option th:each="type : ${allTypes}" 
-		          th:value="${type}" 
-		          th:text="${type}">Wireframe</option>
+		  <option th:each="car : ${allTypes}" 
+		          th:value="${car}" 
+		          th:text="*{car.make}">Model</option>
 		</select>
 		<p><input type="submit" value="Submit" />
 	</form>
 </body>
 </html>
+-->

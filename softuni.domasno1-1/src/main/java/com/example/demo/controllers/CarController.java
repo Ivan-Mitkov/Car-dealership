@@ -1,7 +1,9 @@
 package com.example.demo.controllers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.entity.Car;
+import com.example.demo.entity.Part;
 import com.example.demo.services.CarsService;
 
 @Controller
@@ -34,7 +37,65 @@ public class CarController {
 			public CarController(CarsService service) {
 				this.service = service;
 			}
-			//NOT MAPPED TO THE FORMS
+			@GetMapping("/carFormTest")
+			public String showCarPart(Model model) {
+				
+				model.addAttribute("car",new Car());				
+				return "carFormTest";
+			}
+			//show cars with same model
+			@PostMapping("/showCar")
+			public String carsByMake(@Valid @ModelAttribute("car") Car car,
+					 BindingResult result,
+					 Model model) {
+				if (result.hasErrors()) {
+			        return "error";
+			    }
+				List<Car>cars=new ArrayList<>();
+				cars=service.getCarsByMake(car.getMake());
+				//add car to spring MVC model
+				model.addAttribute("carsByMake",cars);
+				
+				return "makelist";
+			}
+			
+			
+			
+			@GetMapping("/parts")
+			public String showCarFormTest(Model model) {
+				
+				model.addAttribute("car",new Car());				
+				return "parts";
+			}
+			
+			//show parts with same model
+			@PostMapping("/partOfCar")
+			public String partsByCar(@Valid @ModelAttribute("car") Car car,
+					 BindingResult result,
+					 Model model) {
+				if (result.hasErrors()) {
+			        return "error";
+			    }
+				Map<Car,List<Part>>parts=new HashMap<Car, List<Part>>();
+				parts=service.getCarWithThereParts(car.getId());
+				//add car to spring MVC model
+				model.addAttribute("carsByMake",parts);
+				
+				return "partlist";
+			}
+			
+			//NOT USED
+			@GetMapping("/carForms")
+			public String showCarForm( Model model) {
+				List<Car>allTypes=new ArrayList<>(); 
+				//get all makers
+				allTypes=service.getCarMakers();
+				//add them to the model
+				model.addAttribute("allTypes",allTypes);
+				
+				return "carForms";
+			}
+			//FOR TESTS
 			@PostMapping("/showCarTest")
 			public String listCarsByMake(@Valid @ModelAttribute("car") Car car,
 					 BindingResult result,
@@ -48,21 +109,6 @@ public class CarController {
 				model.addAttribute("car",type2);
 				
 				return "makelistTest";
-			}
-			@GetMapping("/carForms")
-			public String showCarForm(@ModelAttribute("type")String type,
-					 Model model) {
-				List<String>allTypes=new ArrayList<>(); 
-				allTypes=service.getCarMakers();
-				model.addAttribute("allTypes",allTypes);
-				
-				return "carForms";
-			}
-			@GetMapping("/carFormTest")
-			public String showCarFormTest(Model model) {
-				
-				model.addAttribute("car",new Car());				
-				return "carFormTest";
 			}
 	
 }

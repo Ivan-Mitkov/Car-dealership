@@ -15,7 +15,7 @@ public interface CarsService {
 	
 	public List<Car> getCarsByMake(String make);
 
-	List<String> getCarMakers();
+	List<Car> getCarMakers();
 	
 
 	Car carById(long id);

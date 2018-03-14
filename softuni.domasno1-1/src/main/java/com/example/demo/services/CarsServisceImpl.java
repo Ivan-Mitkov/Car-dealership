@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -57,13 +58,13 @@ public class CarsServisceImpl implements CarsService{
 
 	@Override
 	@Transactional
-	public List<String> getCarMakers() {
+	public List<Car> getCarMakers() {
 		List<Car> manufacturers= carRepository.findAll();
-		Set<String>uniqMakers=new TreeSet<>();
+		Map<String, Car>uniqMakers=new TreeMap<>();
 		for(Car a:manufacturers) {
-			uniqMakers.add(a.getMake());
+			uniqMakers.put(a.getMake(), a);
 		}
-		List<String> makers= uniqMakers.stream().collect(Collectors.toList());
+		List<Car> makers= uniqMakers.values().stream().collect(Collectors.toList());
 		
 		return makers;
 	}

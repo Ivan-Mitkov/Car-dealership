@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Parts</title>
+
+</head>
+<body>
+			<table th:object="${carsByMake}">
+					<tr>
+						<th>Make</th>
+						<th>Model</th>
+						<th>Travelled distance</th>	
+											
+					</tr>
+					<ul>
+					    <li th:each="entry: ${carsByMake}">
+					        <span th:text="${entry.key}"></span> = <span th:text="${entry.value}"></span>
+					    </li>
+					</ul>
+					</tr>
+    				
+				
+    	</table>
+	 		
+		 
+</body>
+</html>
